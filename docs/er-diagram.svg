@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 800" font-family="Helvetica, Arial, sans-serif" font-size="12">
+  <defs>
+    <marker id="oneMarker" viewBox="0 0 12 12" refX="12" refY="6" markerWidth="14" markerHeight="14" orient="auto">
+      <line x1="4" y1="0" x2="4" y2="12" stroke="#1e293b" stroke-width="1.4"/>
+      <line x1="10" y1="0" x2="10" y2="12" stroke="#1e293b" stroke-width="1.4"/>
+    </marker>
+    <marker id="manyMarker" viewBox="0 0 14 12" refX="0" refY="6" markerWidth="14" markerHeight="14" orient="auto">
+      <path d="M0,6 L12,0 M0,6 L12,12 M0,6 L12,6" fill="none" stroke="#1e293b" stroke-width="1.4"/>
+    </marker>
+    <style>
+      .entity-title { font-weight: bold; font-size: 14px; fill: #ffffff; }
+      .entity-header-users { fill: #1d4ed8; }
+      .entity-header-movies { fill: #059669; }
+      .entity-header-theatres { fill: #b45309; }
+      .entity-header-showtimes { fill: #7e22ce; }
+      .entity-header-bookings { fill: #be123c; }
+      .entity-body { fill: #ffffff; stroke: #1e293b; stroke-width: 1.4; }
+      .pk { fill: #0f172a; font-weight: bold; }
+      .fk { fill: #0f766e; font-style: italic; }
+      .col { fill: #1f2937; }
+      .col-type { fill: #64748b; }
+      .rel-line { stroke: #1e293b; stroke-width: 1.6; fill: none; }
+      .rel-label { fill: #0f172a; font-size: 11px; font-weight: bold; }
+      .cardinality { fill: #0f172a; font-size: 12px; font-weight: bold; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="650" y="30" text-anchor="middle" font-size="22" font-weight="bold" fill="#0f172a">CinePlex — Entity Relationship Diagram</text>
+  <text x="650" y="52" text-anchor="middle" font-size="12" fill="#64748b">Database: cineplex_db (MySQL 8.0)</text>
+
+  <!-- ============ USERS ============ -->
+  <g transform="translate(60, 100)">
+    <rect class="entity-header-users" x="0" y="0" width="260" height="36" rx="4"/>
+    <text class="entity-title" x="130" y="23" text-anchor="middle">users</text>
+    <rect class="entity-body" x="0" y="36" width="260" height="170"/>
+
+    <text class="pk" x="12" y="58">🔑 PK</text>
+    <text class="pk" x="60" y="58">user_id</text>
+    <text class="col-type" x="180" y="58">INT AUTO_INC</text>
+
+    <text class="col" x="60" y="78">full_name</text>
+    <text class="col-type" x="180" y="78">VARCHAR(100)</text>
+
+    <text class="col" x="60" y="98">email  (UNIQUE)</text>
+    <text class="col-type" x="180" y="98">VARCHAR(120)</text>
+
+    <text class="col" x="60" y="118">password</text>
+    <text class="col-type" x="180" y="118">VARCHAR(255)</text>
+
+    <text class="col" x="60" y="138">phone</text>
+    <text class="col-type" x="180" y="138">VARCHAR(20)</text>
+
+    <text class="col" x="60" y="158">role</text>
+    <text class="col-type" x="180" y="158">ENUM</text>
+
+    <text class="col" x="60" y="178">created_at</text>
+    <text class="col-type" x="180" y="178">TIMESTAMP</text>
+
+    <text x="12" y="200" font-style="italic" fill="#475569" font-size="10">role ∈ {USER, ADMIN}</text>
+  </g>
+
+  <!-- ============ THEATRES ============ -->
+  <g transform="translate(60, 420)">
+    <rect class="entity-header-theatres" x="0" y="0" width="260" height="36" rx="4"/>
+    <text class="entity-title" x="130" y="23" text-anchor="middle">theatres</text>
+    <rect class="entity-body" x="0" y="36" width="260" height="130"/>
+
+    <text class="pk" x="12" y="58">🔑 PK</text>
+    <text class="pk" x="60" y="58">theatre_id</text>
+    <text class="col-type" x="180" y="58">INT AUTO_INC</text>
+
+    <text class="col" x="60" y="78">name</text>
+    <text class="col-type" x="180" y="78">VARCHAR(100)</text>
+
+    <text class="col" x="60" y="98">city</text>
+    <text class="col-type" x="180" y="98">VARCHAR(60)</text>
+
+    <text class="col" x="60" y="118">address</text>
+    <text class="col-type" x="180" y="118">VARCHAR(255)</text>
+
+    <text class="col" x="60" y="138">total_seats</text>
+    <text class="col-type" x="180" y="138">INT (default 60)</text>
+  </g>
+
+  <!-- ============ MOVIES ============ -->
+  <g transform="translate(520, 100)">
+    <rect class="entity-header-movies" x="0" y="0" width="260" height="36" rx="4"/>
+    <text class="entity-title" x="130" y="23" text-anchor="middle">movies</text>
+    <rect class="entity-body" x="0" y="36" width="260" height="190"/>
+
+    <text class="pk" x="12" y="58">🔑 PK</text>
+    <text class="pk" x="60" y="58">movie_id</text>
+    <text class="col-type" x="180" y="58">INT AUTO_INC</text>
+
+    <text class="col" x="60" y="78">title</text>
+    <text class="col-type" x="180" y="78">VARCHAR(150)</text>
+
+    <text class="col" x="60" y="98">genre</text>
+    <text class="col-type" x="180" y="98">VARCHAR(60)</text>
+
+    <text class="col" x="60" y="118">language</text>
+    <text class="col-type" x="180" y="118">VARCHAR(40)</text>
+
+    <text class="col" x="60" y="138">duration_min</text>
+    <text class="col-type" x="180" y="138">INT</text>
+
+    <text class="col" x="60" y="158">rating</text>
+    <text class="col-type" x="180" y="158">VARCHAR(10)</text>
+
+    <text class="col" x="60" y="178">description</text>
+    <text class="col-type" x="180" y="178">TEXT</text>
+
+    <text class="col" x="60" y="198">poster_path</text>
+    <text class="col-type" x="180" y="198">VARCHAR(255)</text>
+
+    <text class="col" x="60" y="218">now_showing</text>
+    <text class="col-type" x="180" y="218">BOOLEAN</text>
+  </g>
+
+  <!-- ============ SHOWTIMES ============ -->
+  <g transform="translate(520, 430)">
+    <rect class="entity-header-showtimes" x="0" y="0" width="260" height="36" rx="4"/>
+    <text class="entity-title" x="130" y="23" text-anchor="middle">showtimes</text>
+    <rect class="entity-body" x="0" y="36" width="260" height="150"/>
+
+    <text class="pk" x="12" y="58">🔑 PK</text>
+    <text class="pk" x="60" y="58">showtime_id</text>
+    <text class="col-type" x="180" y="58">INT AUTO_INC</text>
+
+    <text class="fk" x="12" y="78">FK →</text>
+    <text class="fk" x="60" y="78">movie_id</text>
+    <text class="col-type" x="180" y="78">INT</text>
+
+    <text class="fk" x="12" y="98">FK →</text>
+    <text class="fk" x="60" y="98">theatre_id</text>
+    <text class="col-type" x="180" y="98">INT</text>
+
+    <text class="col" x="60" y="118">show_date</text>
+    <text class="col-type" x="180" y="118">DATE</text>
+
+    <text class="col" x="60" y="138">show_time</text>
+    <text class="col-type" x="180" y="138">TIME</text>
+
+    <text class="col" x="60" y="158">price</text>
+    <text class="col-type" x="180" y="158">DECIMAL(8,2)</text>
+  </g>
+
+  <!-- ============ BOOKINGS ============ -->
+  <g transform="translate(980, 260)">
+    <rect class="entity-header-bookings" x="0" y="0" width="260" height="36" rx="4"/>
+    <text class="entity-title" x="130" y="23" text-anchor="middle">bookings</text>
+    <rect class="entity-body" x="0" y="36" width="260" height="170"/>
+
+    <text class="pk" x="12" y="58">🔑 PK</text>
+    <text class="pk" x="60" y="58">booking_id</text>
+    <text class="col-type" x="180" y="58">INT AUTO_INC</text>
+
+    <text class="fk" x="12" y="78">FK →</text>
+    <text class="fk" x="60" y="78">user_id</text>
+    <text class="col-type" x="180" y="78">INT</text>
+
+    <text class="fk" x="12" y="98">FK →</text>
+    <text class="fk" x="60" y="98">showtime_id</text>
+    <text class="col-type" x="180" y="98">INT</text>
+
+    <text class="col" x="60" y="118">seats</text>
+    <text class="col-type" x="180" y="118">VARCHAR(255)</text>
+
+    <text class="col" x="60" y="138">total_amount</text>
+    <text class="col-type" x="180" y="138">DECIMAL(10,2)</text>
+
+    <text class="col" x="60" y="158">status</text>
+    <text class="col-type" x="180" y="158">ENUM</text>
+
+    <text class="col" x="60" y="178">booked_at</text>
+    <text class="col-type" x="180" y="178">TIMESTAMP</text>
+
+    <text x="12" y="200" font-style="italic" fill="#475569" font-size="10">status ∈ {CONFIRMED, CANCELLED} · seats = "A1,A2,B3"</text>
+  </g>
+
+  <!-- ============ RELATIONSHIPS ============ -->
+
+  <!-- movies (1) ── (N) showtimes -->
+  <path class="rel-line" d="M650,290 L650,430" marker-start="url(#oneMarker)" marker-end="url(#manyMarker)"/>
+  <text class="rel-label" x="660" y="355">shown_as</text>
+  <text class="cardinality" x="625" y="310">1</text>
+  <text class="cardinality" x="625" y="425">N</text>
+
+  <!-- theatres (1) ── (N) showtimes -->
+  <path class="rel-line" d="M320,500 L520,500" marker-start="url(#oneMarker)" marker-end="url(#manyMarker)"/>
+  <text class="rel-label" x="370" y="492">hosts</text>
+  <text class="cardinality" x="330" y="515">1</text>
+  <text class="cardinality" x="505" y="515">N</text>
+
+  <!-- showtimes (1) ── (N) bookings -->
+  <path class="rel-line" d="M780,490 L980,380" marker-start="url(#oneMarker)" marker-end="url(#manyMarker)"/>
+  <text class="rel-label" x="830" y="425">has</text>
+  <text class="cardinality" x="790" y="480">1</text>
+  <text class="cardinality" x="965" y="385">N</text>
+
+  <!-- users (1) ── (N) bookings -->
+  <path class="rel-line" d="M320,180 Q650,200 980,320" marker-start="url(#oneMarker)" marker-end="url(#manyMarker)"/>
+  <text class="rel-label" x="620" y="175">makes</text>
+  <text class="cardinality" x="330" y="195">1</text>
+  <text class="cardinality" x="965" y="320">N</text>
+
+  <!-- Legend -->
+  <g transform="translate(60, 640)">
+    <rect x="0" y="0" width="1180" height="140" fill="#f8fafc" stroke="#cbd5e1" rx="4"/>
+    <text x="16" y="22" font-weight="bold" fill="#0f172a">Legend / Cardinality</text>
+
+    <line x1="16" y1="48" x2="100" y2="48" class="rel-line" marker-start="url(#oneMarker)" marker-end="url(#manyMarker)"/>
+    <text x="110" y="52" fill="#0f172a">One-to-Many (1 — N)  · crow's-foot notation</text>
+
+    <text x="16" y="78" fill="#0f172a">🔑  <tspan font-weight="bold">PK</tspan> : Primary key  ·  <tspan fill="#0f766e" font-style="italic">FK →</tspan> : Foreign key referencing another table</text>
+
+    <text x="16" y="100" font-weight="bold" fill="#0f172a">Business rules captured by this schema:</text>
+    <text x="16" y="118" fill="#334155">• A user makes many bookings; a booking belongs to exactly one user.  ON DELETE CASCADE.</text>
+    <text x="16" y="134" fill="#334155">• A showtime is a (movie × theatre × date × time × price) tuple.  A booking references one showtime.</text>
+  </g>
+</svg>

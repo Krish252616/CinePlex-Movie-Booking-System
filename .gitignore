@@ -1,0 +1,39 @@
+# --- Build output ---
+target/
+build/
+out/
+*.class
+*.jar
+!lib/*.jar
+
+# --- IDE files ---
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+.settings/
+.project
+.classpath
+nbproject/
+nb-configuration.xml
+
+# --- OS junk ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Logs / temp ---
+*.log
+*.tmp
+*.swp
+*~
+
+# --- Secrets ---
+# NEVER commit real DB credentials.  Commit db.properties.example instead.
+src/main/resources/db.properties
+*.env
+.env
+
+# --- Maven wrapper internals (optional) ---
+.mvn/wrapper/maven-wrapper.jar

@@ -1,0 +1,9 @@
+# =====================================================
+#  CinePlex - Database configuration TEMPLATE
+#  Copy this file to db.properties and fill in values.
+#  Never commit the real db.properties to Git.
+# =====================================================
+db.url=jdbc:mysql://localhost:3306/cineplex_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+db.user=your_mysql_username
+db.password=your_mysql_password
+db.driver=com.mysql.cj.jdbc.Driver
